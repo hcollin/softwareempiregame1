@@ -1,28 +1,6 @@
 
 
-
-div.board {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  margin: 2rem auto;
-  width: 40rem;
-  justify-content: center;
-  align-items: center;
-
+body {
+    background-image: url("./boardbg.png");
 }
 
-div.board > div.box {
-  display: flex;
-  width: 10rem;
-  height: 10rem;
-  margin: 1rem;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 8rem;
-  font-weight: bold;
-
-  border: solid 2px black;
-}

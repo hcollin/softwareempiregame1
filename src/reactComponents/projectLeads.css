@@ -1,0 +1,12 @@
+
+div.projectLeads > div.row {
+
+    display: flex;
+    flex-direction: row;
+}
+
+
+div.projectLeads > div.row > div.projectLeadContainer { 
+    flex: 0 0 auto;
+    margin: 0.25rem;
+}

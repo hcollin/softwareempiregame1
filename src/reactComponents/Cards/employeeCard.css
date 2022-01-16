@@ -1,0 +1,141 @@
+:root {
+	--multiplier: 2;
+	--card-width: 68px;
+	--card-height: 88px;
+}
+
+div.employeeCardContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: calc(var(--card-width) * var(--multiplier));
+    height: calc(var(--card-height) * var(--multiplier));
+
+    border: solid 1px black;
+
+    background: linear-gradient(0deg, #CCCCCC 0%,  #FFFFFF 10%, #FFFFFF 90%, #CCCCCC 100%);
+
+    border-radius: calc(3px * var(--multiplier));
+
+    margin: 0 0.25rem;
+}
+
+
+div.employeeCardContainer > h1 {
+    font-size: calc(0.5rem * var(--multiplier));
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: solid 2px #00000088;
+    padding: 0.1rem 0;
+}
+
+div.employeeCardContainer > h2 {
+    flex: 0 0 auto;
+    font-size: calc(0.3rem * var(--multiplier));
+    font-style: italic;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: solid 1px #00000088;
+    padding: 0.1rem 0;
+    background-color: #00000011;
+}
+
+div.employeeCardContainer > div > h3 { 
+    font-size: 0.7rem;
+    margin: 0;
+    padding: 0.1rem;
+    
+}
+
+div.employeeCardContainer > div.keywords {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 2.1rem;
+}
+
+div.employeeCardContainer > div.keywords > div.word {
+    font-size: 0.6rem;
+    padding: 0.1rem 0.25rem;
+    margin: 0.1rem;
+    border: solid 1px #00000088;
+    border-radius: 0.5rem;
+}
+
+div.employeeCardContainer > div.rules {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2.1rem;
+}
+
+div.employeeCardContainer > div.rules > p { 
+    font-size: 0.6rem;
+    margin: 0;
+    padding: 0.1rem;
+}
+
+
+div.employeeCardContainer > div.actions {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2.2rem;
+}
+
+div.employeeCardContainer > div.actions > p { 
+    font-size: 0.6rem;
+    margin: 0.1rem;
+    padding: 0.1rem;
+    border: solid 1px #00000088;
+
+}
+
+div.employeeCardContainer > div.stars {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0.25rem;
+    border-top: solid 2px #00000088;
+    border-right: solid 2px #00000088;
+    border-top-right-radius: 0.5rem;
+    background: #00000022;
+    box-shadow: inset 0 0 6px 2px #00000022;
+}
+
+div.employeeCardContainer > div.stars > img { 
+    width: 1.5rem;
+    height: 1.5rem;
+    flex: 0 0 auto;
+}
+
+div.employeeCardContainer > footer {
+    position: absolute;
+    bottom: 0;
+    left: 2rem;
+    right: 0;
+    height: 1.25rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+div.employeeCardContainer > footer > div {
+    flex: 0 0 auto;
+    width: 33%;
+    font-size: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000044;
+    height: 100%;
+    font-weight: bold;
+}
+
+div.employeeCardContainer > footer > div.disabled { 
+    color: #00000077;
+}

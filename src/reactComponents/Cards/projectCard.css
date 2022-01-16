@@ -1,0 +1,73 @@
+:root {
+	--multiplier: 2;
+	--card-width: 68px;
+	--card-height: 88px;
+}
+
+div.projectCardContainer {
+    
+    display: flex;
+    flex-direction: column;
+    width: calc(var(--card-width) * var(--multiplier));
+    height: calc(var(--card-height) * var(--multiplier));
+
+    border: solid 1px black;
+
+    background: linear-gradient(0deg, #CCCCCC 0%,  #FFFFFF 10%, #FFFFFF 90%, #CCCCCC 100%);
+
+    border-radius: calc(3px * var(--multiplier));
+}
+
+div.projectCardContainer > h1 {
+    font-size: calc(0.5rem * var(--multiplier));
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: solid 2px #00000088;
+    padding: 0.1rem 0;
+}
+
+div.projectCardContainer > h2 {
+    flex: 0 0 auto;
+    font-size: calc(0.4rem * var(--multiplier));
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: solid 1px #00000088;
+    padding: 0.1rem 0;
+    background-color: #00000011;
+}
+
+
+
+div.projectCardContainer > footer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    border-top: solid 2px #00000088;
+    background: #00000033;
+}
+
+div.projectCardContainer > div.rules {
+    flex: 1 1 auto;
+    font-size: 0.75rem;
+}
+
+div.projectCardContainer > footer > div {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 0.1rem 0.25rem;
+}
+
+div.projectCardContainer > footer > div > label {
+    font-size: 0.5rem;
+    font-weight: normal;
+
+}
