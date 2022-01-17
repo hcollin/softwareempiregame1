@@ -5,6 +5,9 @@ import createDeck, { deckDraw, deckShuffle } from "./Deck";
 import pngCardback from "./cardbackProject.png";
 import { Ctx } from "boardgame.io";
 import { GameState } from "../models/GameModels";
+import { arnd, arnds, rnd } from "rndlib";
+import { languageKeywords, roleKeywords } from "./EmployeeDeck";
+import { idText } from "typescript";
 
 const initialProjectDeck: [number, Partial<ProjectCardModel>][] = [
 	[1, { name: "Project 1", industry: "Logistics" }],
@@ -20,6 +23,23 @@ const initialProjectDeck: [number, Partial<ProjectCardModel>][] = [
 	[1, { name: "Project 11", industry: "Entertainment" }],
 	[1, { name: "Project 12", industry: "Entertainment" }],
 ];
+
+export function getRandomProjectDeck(ctx: Ctx): Deck<ProjectCardModel> {
+	const cards: ProjectCardModel[] = [];
+
+	while(cards.length < 50) {
+		cards.push(randomProject());
+	}
+
+	const d = createDeck<ProjectCardModel>({ deck: cards, name: "Projects", cardback: pngCardback });
+
+	const nd = ctx.random?.Shuffle(d.deck);
+	if (nd) {
+		d.deck = nd;
+	}
+
+	return d;
+}
 
 export function getAllProjectCards(ctx: Ctx): Deck<ProjectCardModel> {
 	const cards: ProjectCardModel[] = [];
@@ -84,3 +104,85 @@ export function addNewProjectLead(G: GameState, ctx: Ctx, pcs: ProjectCardModel[
     });
     
 }
+
+
+function randomProject(): ProjectCardModel {
+
+
+	const prj: ProjectCardModel = {
+		id: `rnd-prj-card-${rnd(1000,99999)}`,
+		industry: arnd(["Finance", "Entertainment", "Industrial", "Public Sector", "Military"]),
+		isFaceDown: true,
+		name: "",
+		size: rnd(1, 5),
+		time: rnd(1,3),
+		type: CardType.PROJECT,
+		vps: rnd(2,5),
+		rules: [],
+		keywords: [], // arnds(languageKeywords, rnd(1,2), true).concat(arnds(roleKeywords, rnd(1,3), true))
+	};
+
+	const totalKsCount = rnd(prj.size, prj.size *2);
+
+	let ks: string[] = [];
+	ks = ks.concat(arnds(languageKeywords, rnd(1,prj.size), true));
+	while(ks.length < totalKsCount) {
+		const r = arnd(roleKeywords);
+		if(!ks.includes(r)) {
+			ks.push(r);
+		}
+	}
+		
+	prj.keywords = ks;
+	const n = arnd(targetNameDict[prj.industry]);
+	prj.name = `${arnd(adjectiveDict)} ${n} ${arnd(targetName2Dict)}`;
+	
+	prj.vps = 3 + ( prj.keywords.length - prj.size) + (2 - prj.time );
+	
+	// console.log(`${prj.industry}: ${prj.name}`);
+
+	return prj;
+	
+}
+
+const adjectiveDict: string[] = [
+	"Interim",
+	"Advanced",
+	"Next generation",
+	"ML based",
+	"AI powered",
+	"Groundbreaking",
+	"Updated",
+	"Legacy",
+	"Cool",
+	"Global",
+	"Secure",
+	"National",
+	"Suspicious",
+	"Alternative",
+	"Hardened",
+	""
+];
+
+const targetNameDict: Record<string, string[]> = {
+	"Finance": ["stock", "payment", "accounting", "loophole", "database", "bitcoin", "crypto", "loan"],
+	"Entertainment": ["movie script", "add", "picture sharing", "trolling", "virtual reality", "social media", "MMO", "3d game"],
+	"Industrial": ["IoT", "inventory", "tracking", "maintenance", "controller", "factory"],
+	"Public Sector": ["medical", "tax", "education", "snooping", "rescue", "patient", "anti loophole"],
+	"Military": ["missile", "defense", "disaster", "emergency", "radar", "cyber warfare", "antiterrorism", "security", "fast response"]
+};
+
+const targetName2Dict: string[] = [
+	"system",
+	"solution",
+	"software",
+	"program",
+	"application",
+	"engine",
+	"generator",
+	"cluster",
+	"prototype",
+	"framework",
+	"platform",
+
+];

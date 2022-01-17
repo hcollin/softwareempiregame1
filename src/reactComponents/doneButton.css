@@ -18,3 +18,9 @@ button.doneButton:hover {
     box-shadow: inset 0 0 1rem 0.25rem #00000088;
     cursor: pointer;
 }
+
+button.doneButton.disabled {
+    background: linear-gradient(90deg, #AAA 0%, #CCC 100%);
+    cursor: default;
+    color: #00000088;
+}

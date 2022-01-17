@@ -13,9 +13,9 @@ export const CardSlots: FC = (props) => {
     )
 }
 
-export const FreeSlot: FC = (props) => {
+export const FreeSlot: FC<{className?: string}> = (props) => {
     return (
-        <div className="freeSlot">
+        <div className={`freeSlot ${props.className || ""}`}>
             {props.children || "Play Card here"}
         </div>
     )

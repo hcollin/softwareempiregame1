@@ -7,9 +7,13 @@ export const ProjectCardComponent: FC<{card: ProjectCardModel}> = (props) => {
 
     
     return (
-        <div className="projectCardContainer">
+        <div className={`projectCardContainer ${props.card.industry.toLowerCase().replace(" ", "")}`}>
             <h1>{props.card.name}</h1>
             {props.card.industry && <h2>{props.card.industry}</h2>}
+
+            <div className="keywords">
+                {props.card.keywords.map((txt: string) => <span key={`${props.card.id}-${txt}`}>{txt}</span> )}
+            </div>
 
 
             <div className="rules">

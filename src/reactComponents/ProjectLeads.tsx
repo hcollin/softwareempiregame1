@@ -13,8 +13,8 @@ export const ProjectLeads: FC<BoardProps<GameState>>  = (props) => {
     const leads = props.G.projectLeads;
 
     return (
-        <div className="projectLeads">
-            <h1>Project Leads</h1>
+        <div className="projectLeads shadowline">
+            <h2 className="title">Project Leads</h2>
 
             <div className="row">
                 {leads.map((pl: ProjectLead) => <ProjectLeadContainer key={pl.project.id} lead={pl}/>)}

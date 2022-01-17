@@ -5,7 +5,7 @@ import { Card, CardType } from "../models/DeckModels";
 import { GameState, SecretPlayerState } from "../models/GameModels";
 import { EmployeeCardComponent } from "./Cards/EmployeeCard";
 
-import "./playerHand.css";
+import "./playerHand.scss";
 
 interface PlayerHand {
 	G: GameState;
@@ -17,22 +17,41 @@ interface PlayerHand {
 export const PlayerHand: FC<PlayerHand> = (props) => {
 	const myState = props.G.playerSecrets.find((st: SecretPlayerState) => st.playerId === props.playerId);
 
-	function handleClick(c: Card) {
-		props.moves.discardEmplyeeCard(c);
-	}
-
 	if (!myState) return null;
 
+	const rowClass = `rows-${Math.ceil(myState.hand.length / 8)}`;
 
-    const rowClass = `rows-${Math.ceil(myState.hand.length / 8)}`;
+	const activeCard = myState.action?.sourceCard;
+
+	function handleClick(c: Card) {
+
+		if(activeCard && activeCard.id === c.id) {
+			props.moves.cancelCardPlayAction();
+		} else {
+			if(activeCard) {
+				props.moves.cancelCardPlayAction();
+			}
+			props.moves.playCardFromHandAction(c);
+		}
+		
+	}
 
 	return (
 		<div className={`playerHandContainer ${rowClass}`}>
 			{myState.hand.map((c: Card) => {
-				if(c.type === CardType.EMPLOYEE) {
-                    return <EmployeeCardComponent key={c.id} card={c as EmployeeCardModel} onClick={() => {}} />;
-                }
-                return (
+				if (c.type === CardType.EMPLOYEE) {
+					return (
+						<EmployeeCardComponent
+							className={activeCard && activeCard.id === c.id ? "active" : ""}
+							key={c.id}
+							card={c as EmployeeCardModel}
+							onClick={(c: EmployeeCardModel) => {
+								handleClick(c);
+							}}
+						/>
+					);
+				}
+				return (
 					<div className="card" key={c.id} onClick={() => handleClick(c)}>
 						{c.name}
 					</div>
@@ -41,4 +60,3 @@ export const PlayerHand: FC<PlayerHand> = (props) => {
 		</div>
 	);
 };
- 

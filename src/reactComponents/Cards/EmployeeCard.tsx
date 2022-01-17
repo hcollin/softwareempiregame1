@@ -3,9 +3,9 @@ import { EmployeeCardActionModel, EmployeeCardModel } from "../../models/CardMod
 
 import pngStar from "./star.png";
 
-import "./employeeCard.css";
+import "./employeeCard.scss";
 
-export const EmployeeCardComponent: FC<{ card: EmployeeCardModel; onClick: () => void }> = (props) => {
+export const EmployeeCardComponent: FC<{ card: EmployeeCardModel; onClick: (c: EmployeeCardModel) => void, className?: string }> = (props) => {
 	const c: EmployeeCardModel = props.card;
 
 	const [mode, setMode] = useState<string>(() => {
@@ -21,8 +21,14 @@ export const EmployeeCardComponent: FC<{ card: EmployeeCardModel; onClick: () =>
 		setMode(toMode);
 	}
 
+	function handleClick() {
+		if(props.onClick) {
+			props.onClick(c);
+		}
+	}
+
 	return (
-		<div className="employeeCardContainer">
+		<div className={`employeeCardContainer ${props.className || ""}`} onClick={handleClick}>
 			<h1>{c.name}</h1>
 			{c.title && <h2>{c.title}</h2>}
 
@@ -30,7 +36,7 @@ export const EmployeeCardComponent: FC<{ card: EmployeeCardModel; onClick: () =>
 				<div className="keywords">
 					{c.keywords.map((k: string, i: number) => {
 						const id = `${c.id}-keyword-${i}`;
-						return <div className="word">{k}</div>;
+						return <div className="word" key={id}>{k}</div>;
 					})}
 				</div>
 			)}

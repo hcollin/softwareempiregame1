@@ -1,14 +1,34 @@
 import { Ctx } from "boardgame.io";
-import { GameState } from "../models/GameModels";
+import { getCurrentPlayerSecrectState } from "../gameComponents/Players";
+import { EmployeeCardModel } from "../models/CardModels";
+import { GameState, PlayPhaseStages } from "../models/GameModels";
 
+export function playCardFromHandAction(G: GameState, ctx: Ctx, card: EmployeeCardModel) {
+	const state = getCurrentPlayerSecrectState(G, ctx);
 
+	if (state) {
+		state.action = {
+			sourceCard: card
+		}
+	}
 
-export function playCardFromHandAction(G: GameState, ctx: Ctx) {
-    
+	ctx.events?.setStage(PlayPhaseStages.ACTION);
+}
+
+export function cancelCardPlayAction(G: GameState, ctx: Ctx) {
+	const state = getCurrentPlayerSecrectState(G, ctx);
+	if (state) {
+		state.action = null;
+	}
+
+	ctx.events?.setStage(PlayPhaseStages.IDLE);
+
 }
 
 export function endTurnAction(G: GameState, ctx: Ctx, playerId: string) {
-    if(!G.playersDone.includes(playerId)) {
-        G.playersDone.push(playerId);
-    }
+	const pid = ctx.currentPlayer;
+	if (!G.playersDone.includes(playerId)) {
+		G.playersDone.push(playerId);
+	}
+	ctx.events?.setStage(PlayPhaseStages.END);
 }

@@ -1,0 +1,134 @@
+div.employeeCardContainer {
+	$cardHeight: 88px;
+	$cardWidth: 68px;
+	$multiplier: 2;
+
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: calc($cardWidth * $multiplier);
+	height: calc($cardHeight * $multiplier);
+
+	border: solid 1px black;
+
+	background: linear-gradient(0deg, #cccccc 0%, #ffffff 10%, #ffffff 90%, #cccccc 100%);
+
+	border-radius: calc(3px * $multiplier);
+
+	margin: 0 0.25rem;
+
+	& > h1 {
+		font-size: calc(0.5rem * $multiplier);
+		margin: 0;
+		width: 100%;
+		text-align: center;
+		border-bottom: solid 2px #00000088;
+		padding: 0.1rem 0;
+	}
+
+	& > h2 {
+		flex: 0 0 auto;
+		font-size: calc(0.3rem * $multiplier);
+		font-style: italic;
+		margin: 0;
+		width: 100%;
+		text-align: center;
+		border-bottom: solid 1px #00000088;
+		padding: 0.1rem 0;
+		background-color: #00000011;
+	}
+
+	& > div {
+		& > h3 {
+			font-size: 0.7rem;
+			margin: 0;
+			padding: 0.1rem;
+		}
+	}
+
+	& > div.keywords {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		margin-left: 2.1rem;
+
+		& > div.word {
+			font-size: 0.6rem;
+			padding: 0.1rem 0.25rem;
+			margin: 0.1rem;
+			border: solid 1px #00000088;
+			border-radius: 0.5rem;
+		}
+	}
+
+	& > div.rules {
+		display: flex;
+		flex-direction: column;
+		margin-left: 2.1rem;
+		& > p {
+			font-size: 0.6rem;
+			margin: 0;
+			padding: 0.1rem;
+		}
+	}
+
+	& > div.actions {
+		display: flex;
+		flex-direction: column;
+		margin-left: 2.2rem;
+		& > p {
+			font-size: 0.6rem;
+			margin: 0.1rem;
+			padding: 0.1rem;
+			border: solid 1px #00000088;
+		}
+	}
+
+	& > div.stars {
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 0.25rem;
+		border-top: solid 2px #00000088;
+		border-right: solid 2px #00000088;
+		border-top-right-radius: 0.5rem;
+		background: #00000022;
+		box-shadow: inset 0 0 6px 2px #00000022;
+		& > img {
+			width: 1.5rem;
+			height: 1.5rem;
+			flex: 0 0 auto;
+		}
+	}
+
+	& > footer {
+		position: absolute;
+		bottom: 0;
+		left: 2rem;
+		right: 0;
+		height: 1.25rem;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+
+		& > div {
+			flex: 0 0 auto;
+			width: 33%;
+			font-size: 0.5rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: #00000044;
+			height: 100%;
+			font-weight: bold;
+		}
+
+		& > div.disabled {
+			color: #00000077;
+		}
+	}
+}

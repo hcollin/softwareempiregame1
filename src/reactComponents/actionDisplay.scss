@@ -1,0 +1,41 @@
+div.actionDisplay {
+	padding: 1rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: left;
+	align-items: center;
+
+	background: linear-gradient(90deg, #00000033 30%, #000000dd 100%);
+	box-shadow: inset 0 0 1rem 0.5rem #00000022;
+
+	height: var(--board-header-height);
+
+	& > * {
+		margin: 0 0.5rem;
+	}
+
+	& > div {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+
+		& > img {
+			height: 1.5rem;
+			margin-right: 0.5rem;
+			opacity: 0.5;
+			
+		}
+	}
+
+	& >  button.cancelActionButton {
+		background: red;
+		color: #eeeeeeee;
+		padding: 0.5rem 1rem;
+	
+		box-shadow: inset 0 0 0.5rem 3px #00000088;
+		font-weight: bold;
+	
+		border-radius: 0.5rem;
+	}
+	
+}

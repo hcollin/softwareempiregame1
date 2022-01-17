@@ -1,38 +1,50 @@
 import { Ctx } from "boardgame.io";
-import { EmployeeCardModel } from "../models/CardModels";
+import { EmployeeCardActionType, EmployeeCardModel } from "../models/CardModels";
 import { CardType, Deck } from "../models/DeckModels";
 import { GameState } from "../models/GameModels";
 import createDeck, { deckShuffle } from "./Deck";
 
 import pngCardback from "./cardbackEmployees.png";
 import { arnd } from "rndlib";
+import { ActionSlotType } from "../models/Actions";
 
 const initialDeckData: [number, Partial<EmployeeCardModel>][] = [
-	[5, {name: "Alice", title: "Junior Frontend Developer", stars: 1, founder: true}],
-	[5, {name: "Justin", title: "Frontend Developer", stars: 2}],
-	[5, {name: "Senior Frontend Developer", stars:3}],
-	[5, {name: "Junior Backend Developer", stars:1, founder: true}],
-	[5, {name: "Backend Developer", stars:2}],
-	[5, {name: "Senior Backend Developer", stars:3}],
-	[3, {name: "Junior UX Designer", stars:1, founder: true}],
-	[3, {name: "UX Designer", stars:2}],
-	[3, {name:  "Senior UX Designer", stars:3}],
-	[4, {name: "Architect",stars: 3}],
-	[3, {name: "Senior Architect", stars:4}],
-	[2, {name: "Lead Architect", stars:5}],
+	[5, { name: "Alice", title: "Junior Frontend Developer", stars: 1, founder: true }],
+	[5, { name: "Justin", title: "Frontend Developer", stars: 2 }],
+	[5, { name: "Senior Frontend Developer", stars: 3 }],
+	[5, { name: "Junior Backend Developer", stars: 1, founder: true }],
+	[5, { name: "Backend Developer", stars: 2 }],
+	[5, { name: "Senior Backend Developer", stars: 3 }],
+	[3, { name: "Junior UX Designer", stars: 1, founder: true }],
+	[3, { name: "UX Designer", stars: 2 }],
+	[3, { name: "Senior UX Designer", stars: 3 }],
+	[4, { name: "Architect", stars: 3 }],
+	[3, { name: "Senior Architect", stars: 4 }],
+	[2, { name: "Lead Architect", stars: 5 }],
 ];
 
-
-const languageKeywords: string[] = ["Java", "JavaScript", "C#", "C++", "Python", "Rust", "Clojure", "Assembly"];
-const roleKeywords: string[] = [ "Web Development", "Server Development", "Mobile Development", "Embedded Systems", "Application Development", "Database", "DevOps", "Cloud Infrastructure", "Testing", "UX design", "Architecture", "Management", "Graphics"];
-
+export const languageKeywords: string[] = ["Java", "JavaScript", "C#", "C++", "Python", "Rust", "Clojure", "Assembly"];
+export const roleKeywords: string[] = [
+	"Web Development",
+	"Server Development",
+	"Mobile Development",
+	"Embedded Systems",
+	"Application Development",
+	"Database",
+	"DevOps",
+	"Cloud Infrastructure",
+	"Testing",
+	"UX design",
+	"Architecture",
+	"Management",
+	"Graphics",
+];
 
 export function getAllEmployeeCards(ctx: Ctx): Deck<EmployeeCardModel> {
 	const cards: EmployeeCardModel[] = [];
 
 	initialDeckData.forEach((v: [number, Partial<EmployeeCardModel>], ind: number) => {
 		for (let i = 0; i < v[0]; i++) {
-			
 			const c: EmployeeCardModel = {
 				id: `employeecard-${ind}-${i}`,
 				type: CardType.EMPLOYEE,
@@ -44,25 +56,23 @@ export function getAllEmployeeCards(ctx: Ctx): Deck<EmployeeCardModel> {
 				keywords: [],
 				rules: [],
 
-				...v[1]
-
+				...v[1],
 			};
 
-			if(c.keywords.length === 0) {
+			if (c.keywords.length === 0) {
 				c.keywords.push(arnd(languageKeywords));
-				if(c.stars > 3) {
+				if (c.stars > 3) {
 					c.keywords.push(arnd(languageKeywords));
 				}
-				if(c.stars > 1) {
+				if (c.stars > 1) {
 					c.keywords.push(arnd(roleKeywords));
 				}
-				if(c.stars > 2) {
+				if (c.stars > 2) {
 					c.keywords.push(arnd(roleKeywords));
 				}
-				if(c.stars > 4) {
+				if (c.stars > 4) {
 					c.keywords.push(arnd(roleKeywords));
 				}
-				
 			}
 
 			cards.push(c);
@@ -122,26 +132,28 @@ export function getCeoCard(playerId: string): EmployeeCardModel {
 		stars: 3,
 		actions: [
 			{
-				type: ["acquire", 1],
-				text: "Acquire 1 Resource"
+				actionSlotType: ActionSlotType.MANAGEMENT,
+				type: [EmployeeCardActionType.ACQUIRE, 1],
+				text: "Acquire 1 Resource",
 			},
 			{
-				type: ["recruit", 2],
-				text: "Recruit 2"
+				actionSlotType: ActionSlotType.MANAGEMENT,
+				type: [EmployeeCardActionType.RECRUIT, 3],
+				text: "Recruit 3",
 			},
 			{
-				type: ["fire", 1],
-				text: "Fire 1 employee"
+				actionSlotType: ActionSlotType.MANAGEMENT,
+				type: [EmployeeCardActionType.FIRE, 1],
+				text: "Fire 1 employee",
 			},
 			{
-				type: ["Sales", 3],
-				text: "Sales"
+				actionSlotType: ActionSlotType.SALES,
+				type: [EmployeeCardActionType.BID, 3],
+				text: "Sales",
 			},
 		],
 		keywords: [],
-		rules: [
-			"This card cannot be discarded."
-		],
+		rules: ["This card cannot be discarded."],
 		cardback: "",
 	};
 }

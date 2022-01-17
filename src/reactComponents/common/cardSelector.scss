@@ -1,0 +1,50 @@
+div.cardSelector {
+
+
+
+    
+
+    div.cards {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    
+        padding: 2rem;
+    
+        & >  div.cardOption {
+            flex: 0 0 auto;
+            margin: 1rem;
+            border: solid 2px transparent;
+            padding: 0;
+    
+            & > div {
+                user-select: none;
+            }
+    
+            &.selected {
+                transform: scale(1.2);
+                // margin-top: -2rem;
+    
+                & > div {
+                    box-shadow: 0 0 0.5rem 3px #00000044;
+                }
+            }
+    
+            & > p {
+                text-align: center;
+                width: 100%;
+                padding: 0;
+                margin: 0.5rem 0 0 0;
+                font-weight: bold;
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                color: #00000099;
+            }
+        }
+
+    }
+
+	
+}

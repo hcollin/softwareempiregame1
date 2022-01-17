@@ -13,9 +13,14 @@ interface DeckProps {
 export const EmployeeDeck: FC<DeckProps> = (props) => {
 	const edeck = props.G.employeeDeck;
 
-    function drawFromDeck() {
-        props.moves.drawSingleEmplyeeCardToHand();
-    }
+	function drawFromDeck() {
+		// props.moves.drawSingleEmplyeeCardToHand();
+	}
 
-	return <DeckComponent deck={edeck} G={props.G} ctx={props.ctx} playerId={props.playerId} onDrawFromDeck={drawFromDeck} />;
+	return (
+		<div className="shadowline">
+			<h2 className="title">Employees Deck</h2>
+			<DeckComponent deck={edeck} G={props.G} ctx={props.ctx} playerId={props.playerId} onDrawFromDeck={drawFromDeck} />
+		</div>
+	);
 };

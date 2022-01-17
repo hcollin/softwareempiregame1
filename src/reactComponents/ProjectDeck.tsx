@@ -13,9 +13,14 @@ interface DeckProps {
 export const ProjectDeck: FC<DeckProps> = (props) => {
 	const pdeck = props.G.projectDeck;
 
-    function drawFromDeck() {
-        props.moves.addNewProjectLeadMove();
-    }
+	function drawFromDeck() {
+		props.moves.addNewProjectLeadMove();
+	}
 
-	return <DeckComponent deck={pdeck} G={props.G} ctx={props.ctx} playerId={props.playerId} onDrawFromDeck={drawFromDeck} />;
+	return (
+		<div className="shadowline">
+			<h2 className="title">Project Deck</h2>
+			<DeckComponent deck={pdeck} G={props.G} ctx={props.ctx} playerId={props.playerId} onDrawFromDeck={drawFromDeck} />
+		</div>
+	);
 };

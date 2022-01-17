@@ -1,0 +1,43 @@
+button.actionButton {
+	background: #aaaabb;
+	color: #222222ee;
+	padding: 0.5rem 0.5rem;
+
+	box-shadow: inset 0 0 0.5rem 3px #00000088;
+	font-weight: bold;
+	font-size: 0.9rem;
+	height: 2.2rem;
+
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+
+	border-radius: 0.5rem;
+	border: solid 2px #00000088;
+
+    cursor: pointer;
+
+	&.positive {
+		background: #007700;
+		color: #eeeeeeee;
+	}
+
+	&.negative {
+		background: red;
+		color: #eeeeeeee;
+	}
+
+    &.disabled {
+        
+        
+        filter: grayscale(0.75);
+        cursor: default;
+
+
+    }
+
+	& > img {
+		height: 1.4rem;
+		margin-right: 0.2rem;
+	}
+}
