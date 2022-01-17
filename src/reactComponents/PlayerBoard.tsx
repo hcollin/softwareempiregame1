@@ -35,9 +35,9 @@ export const PlayerBoard: FC<BoardProps<GameState>> = (props) => {
                 <label>Management Cards</label>
 
                 <CardSlots>
-                    {managementCards.map((v: EmployeeCardModel | null) => {
+                    {managementCards.map((v: EmployeeCardModel | null, i: number) => {
                         if (v !== null) return <EmployeeCardComponent card={v} key={v.id} onClick={() => {}} />;
-                        return <FreeSlot />
+                        return <FreeSlot key={`freeProjectSlot-${i}`} />
                     })}
                 </CardSlots>
             </div>

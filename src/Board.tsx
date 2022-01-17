@@ -12,6 +12,7 @@ import { ProjectDeck } from "./reactComponents/ProjectDeck";
 import { ProjectLeads } from "./reactComponents/ProjectLeads";
 import { PointTracker } from "./reactComponents/PointTracker";
 import { PlayerBoard } from "./reactComponents/PlayerBoard";
+import { DoneButton } from "./reactComponents/DoneButton";
 
 export const SoftwareGameBoard = (props: BoardProps<GameState>) => {
     const edeck = props.G.employeeDeck;
@@ -29,6 +30,8 @@ export const SoftwareGameBoard = (props: BoardProps<GameState>) => {
             <ProjectLeads {...props} />
 
 			<PlayerBoard {...props} />
+
+            <DoneButton {...props} />
 
             <PlayerHand G={props.G} ctx={props.ctx} playerId={props.playerID} moves={props.moves} />
         </div>

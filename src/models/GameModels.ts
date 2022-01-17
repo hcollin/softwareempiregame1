@@ -8,6 +8,7 @@ export interface GameState {
 	projectLeads: ProjectLead[];
 	playerBoards: PublicPlayerState[];
 	playerSecrets: SecretPlayerState[];
+	playersDone: string[];
 }
 
 export interface PublicPlayerState {
