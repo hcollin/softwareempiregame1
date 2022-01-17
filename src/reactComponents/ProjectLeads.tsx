@@ -7,7 +7,7 @@ import { ProjectCardComponent } from "./Cards/ProjectCard";
 
 import "./projectLeads.css";
 
-export const ProjectLeads: FC< BoardProps<GameState>>  = (props) => {
+export const ProjectLeads: FC<BoardProps<GameState>>  = (props) => {
 
 
     const leads = props.G.projectLeads;

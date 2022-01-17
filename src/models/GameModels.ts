@@ -15,6 +15,7 @@ export interface PublicPlayerState {
 	points: number;
 	activeProjects: ActiveProjectCardModel[];
 	activeResources: ResourceCardModel[];
+	playedManagementCards: EmployeeCardModel[];
 }
 
 export interface SecretPlayerState {

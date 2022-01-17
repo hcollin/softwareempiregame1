@@ -1,0 +1,55 @@
+
+
+div.pointTracker {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+
+    /* width: 100%; */
+    height: 3rem;
+    
+
+    background: linear-gradient(180deg, #000000DD 0%, #444444AA 100%);
+    justify-content: left;
+    align-items: center;
+    border-bottom: solid 2px #00000088;
+}
+
+div.pointTracker > div {  
+    flex: 1 1 auto;
+    height: 100%;
+    color: #EEE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.pointTracker > div.playerScore { 
+    flex: 0 0 auto;
+    margin: 3px;
+    padding: 0 1rem;
+    height: 100%;
+}
+
+div.pointTracker > div.title { 
+    flex: 0 0 auto;
+    font-size: 1.5rem;
+    padding: 0 1rem;
+    border-right: ridge 4px #00000088;
+    
+
+}
+
+div.pointTracker > div.logo { 
+    flex: 0 0 auto;
+}
+
+div.pointTracker > div.logo > img { 
+    height: 3rem;
+    padding: 0.1rem 0.5rem;
+}
+
+div.pointTracker > div.menu { 
+    flex: 0 0 auto;
+    width: 3rem;
+}
